@@ -1,13 +1,19 @@
 <template>
   <div class="hello">
     <h1>Home Component</h1>
-    {{ msg }}
+
   </div>
 </template>
 
 <script>
-export default {
+  import store from '../store/index'
 
+export default {
+  created(){
+    store.getSections().then(sections => {
+      console.log(sections);
+    })
+  }
 }
 </script>
 
