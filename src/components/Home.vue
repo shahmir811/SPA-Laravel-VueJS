@@ -1,6 +1,11 @@
 <template>
-  <div class="hello">
-    <h1>Home Component</h1>
+  <div>
+    <ul class="list-unstyled">
+      <li class="well" v-for="section in sections">
+        <router-link :to="{ name: 'section', params: { sectionId: section.id } }" tag="h4"><a>{{ section.title }}</a></router-link>
+        <p>{{ section.description }}</p>
+      </li>
+    </ul>
 
   </div>
 </template>
@@ -9,9 +14,15 @@
   import store from '../store/index'
 
 export default {
+
+  data() {
+    return {
+        sections: []
+    }
+  },
   created(){
     store.getSections().then(sections => {
-      console.log(sections);
+      this.sections = sections
     })
   }
 }
