@@ -10,7 +10,7 @@ Vue.use(VueResource);
 
 Vue.http.options.root = 'http://localhost:8000/api';
 
-const router = new VueRouter({
+export const router = new VueRouter({
   routes
 });
 
