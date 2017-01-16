@@ -8,6 +8,7 @@ import {routes} from './routes'
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token') //Authorization Header
 Vue.http.options.root = 'http://localhost:8000/api';
 
 export const router = new VueRouter({

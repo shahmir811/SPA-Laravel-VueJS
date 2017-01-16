@@ -6,6 +6,17 @@ export default {
     authenticated: false,
     profile: null
   },
+  check() {
+    if(localStorage.getItem('id_token') !== null) {
+      Vue.http({
+        url: 'user',
+        method: 'GET'
+      }).then(response => {
+        this.user.authenticated = true
+        this.user.profile = response.data.data
+      })
+    }
+  },
   signin (context, email, password) {
     Vue.http.post('auth/signin', {email: email, password: password}).then(response => {
         context.error = false
@@ -29,5 +40,12 @@ export default {
           context.response = response.data
           context.error = true
       })
+  },
+  signout () {
+    localStorage.removeItem('id_token')
+    this.user.authenticated = false
+    this.user.profile = null
+
+    router.push({ name: 'home' }) // Redirect to Home Page when authenticated
   }
 }
