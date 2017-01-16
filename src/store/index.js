@@ -16,3 +16,15 @@ store.getSections = () => {
       })
     })
 }
+
+store.getTopicsBySection = (id) => {
+    return new Promise((resolve, reject) => {
+      Vue.http({
+        url: 'topic',
+        method: 'GET',
+        params: { 'section_id': id}
+      }).then(response => {
+        resolve(response.data.data)
+      })
+    })
+}
