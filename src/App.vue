@@ -7,10 +7,10 @@
             <router-link :to="{ name: 'home'}" tag="li" active-class="active"><a>Home</a></router-link>
             <router-link :to="{ name: 'topic.new'}" tag="li" active-class="active"><a>Post a topic</a></router-link>
 
-            <router-link :to="{ name: 'auth.signin'}" tag="li" active-class="active" class="pull-right"><a>Sign In</a></router-link>
-            <router-link :to="{ name: 'auth.signup'}" tag="li" active-class="active" class="pull-right"><a>Sign Up</a></router-link>
-            <li class="pull-right"><a href="#">Sign Out</a></li>
-            <li class="pull-right"><a href="#">Hello Shahmir</a></li>
+            <router-link :to="{ name: 'auth.signin'}" tag="li" active-class="active" class="pull-right" v-if="!auth.user.authenticated"><a>Sign In</a></router-link>
+            <router-link :to="{ name: 'auth.signup'}" tag="li" active-class="active" class="pull-right" v-if="!auth.user.authenticated"><a>Sign Up</a></router-link>
+            <li class="pull-right"><a href="#" v-if="auth.user.authenticated">Sign Out</a></li>
+            <li class="pull-right"><a href="#" v-if="auth.user.authenticated">Hi {{ auth.user.profile.username }}!</a></li>
           </ul>
         </nav>
       </div>
@@ -27,8 +27,14 @@
 
 <script>
 
+import auth from './auth/index'
 
 export default {
+  data (){
+    return {
+      auth: auth
+    }
+  }
 
 }
 </script>
