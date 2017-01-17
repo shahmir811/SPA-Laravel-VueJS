@@ -49,3 +49,14 @@ store.replyToTopicById = (id, body) => {
     })
   })
 }
+
+
+store.createTopic = (section, title, body) => {
+  return new Promise((resolve, reject) => {
+    Vue.http.post('topic', { section_id: section, title:title, body: body}).then(response => {
+      resolve(response.data.data)
+    }, response => {
+      reject(response.data)
+    })
+  })
+}

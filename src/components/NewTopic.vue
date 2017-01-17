@@ -38,6 +38,7 @@
 
 import auth from '../auth/index'
 import store from '../store/index'
+import {router} from '../main'
 
 export default {
   data() {
@@ -57,7 +58,11 @@ export default {
   },
   methods: {
     createSection() {
-      console.log(this.section)
+      store.createTopic(this.section, this.title, this.body).then(topic => {
+        router.push({ name: 'topic', params: { topicId: topic.id } })
+      }, response => { //if Error comes then
+        console.log(response)
+      })
     }
   }
 }
