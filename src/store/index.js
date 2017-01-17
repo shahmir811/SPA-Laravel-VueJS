@@ -5,9 +5,9 @@ const store = {}
 
 export default store
 
-store.state = {
-  topic: null
-}
+// store.state = {
+//   topic: null
+// }
 
 
 store.getSections = () => {
